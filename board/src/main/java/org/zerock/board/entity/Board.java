@@ -20,7 +20,7 @@ public class Board {
 
     private String content;
 
-    @ManyToOne
-    private Member writer; //연관관계 지정
+    @ManyToOne  (fetch = FetchType.LAZY) //명시적으로 Lazy 로딩 지정
+    private Member writer;
 
 }
