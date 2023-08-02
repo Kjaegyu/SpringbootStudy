@@ -1,15 +1,19 @@
 package org.zerock.guestbook.service;
 
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.zerock.guestbook.dto.GuestbookDTO;
 import org.zerock.guestbook.dto.PageRequestDTO;
 import org.zerock.guestbook.dto.PageResultDTO;
 import org.zerock.guestbook.entity.Guestbook;
+
+import java.util.Optional;
 
 
 public interface GuestbookService {
     Long register(GuestbookDTO dto);
 
     PageResultDTO<GuestbookDTO, Guestbook> getList(PageRequestDTO requestDTO);
+
     default Guestbook dtoToEntity(GuestbookDTO dto) {
         Guestbook entity = Guestbook.builder()
                 .gno(dto.getGno())
@@ -37,5 +41,11 @@ public interface GuestbookService {
 
     GuestbookDTO read(Long gno);
 
+    void remove(long gno);
+
+    void modify(GuestbookDTO dto);
+
+
 
 }
+
