@@ -21,8 +21,9 @@ import org.zerock.board.service.BoardService;
 public class BoardController {
 
     private final BoardService boardService;
+
     @GetMapping("/list")
-    public void list(PageRequestDTO pageRequestDTO, Model model){
+    public void list(PageRequestDTO pageRequestDTO, Model model) {
 
         log.info("list............." + pageRequestDTO);
 
@@ -32,12 +33,12 @@ public class BoardController {
     }
 
     @GetMapping("/register")
-    public void register(){
+    public void register() {
         log.info("regiser get...");
     }
 
     @PostMapping("/register")
-    public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes){
+    public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes) {
 
         log.info("dto..." + dto);
         //새로 추가된 엔티티의 번호
@@ -50,4 +51,16 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
+    @GetMapping("/read")
+    public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long bno, Model model){
+
+        log.info("bno: " + bno);
+
+        BoardDTO boardDTO = boardService.get(bno);
+
+        log.info(boardDTO);
+
+        model.addAttribute("dto", boardDTO);
+
+    }
 }
