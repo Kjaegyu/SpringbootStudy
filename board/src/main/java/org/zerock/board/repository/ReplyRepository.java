@@ -9,6 +9,8 @@ import org.zerock.board.entity.Reply;
 import java.util.List;
 
 public interface ReplyRepository extends JpaRepository <Reply, Long>{
+
+    //Board 삭제시에 댓글들 삭제
     @Modifying
     @Query("delete from Reply r where r.board.bno =:bno")
     void deleteByBno(Long bno);

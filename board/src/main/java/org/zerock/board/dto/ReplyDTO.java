@@ -17,7 +17,7 @@ public class ReplyDTO {
 
     private String text;
 
-    private String repley;
+    private String replyer;
 
     private Long bno; //게시글 번호
 
